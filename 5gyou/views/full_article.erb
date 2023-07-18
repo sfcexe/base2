@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>全文表示</title>
+  <style>
+    /* CSSスタイルの定義 */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .full-article {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    .comment {
+      background-color: #f5f3f0;
+      border: 1px solid #87856c;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .comment-author {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .comment-content {
+      margin-bottom: 5px;
+    }
+    
+    .gohome {
+      text-align:right;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>表示</h1>
+  <a href="/" class="gohome">ホーム</a>
+  <% if @article %>
+    <div class="full-article">
+      <p>題名:<%= @article[:password] %></p>
+      <p>説明内容: <%= @article[:message] %></p>
+    </div>
+    <form action="/delete_article/<%= @id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="記事削除">
+</form>
+
+    <h2>コメント</h2>
+     <% if @comments.any? %>
+    <% @comments.each_with_index do |comment, index| %>
+      <div class="comment">
+        <p class="comment-author"><%= "#{index + 1}. #{comment[:author]}" %></p>
+        <p class="comment-content"><%= comment[:content] %></p>
+      </div>
+    <% end %>
+    <% else %>
+      <p>コメントはありません。</p>
+    <% end %>
+    <h2>コメントを追加する</h2>
+    <form action="/comment" method="post">
+      <input type="hidden" name="article_id" value="<%= @id %>">
+      <label for="author">投稿者名:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+      <input type="text" name="author" id="author" required>
+      <br>
+      <label for="content">コメント内容:</label>
+      <textarea name="content" id="content" rows="5" cols="50" required></textarea>
+      <br>
+      <input type="submit" value="コメントする">
+    </form>
+  <% else %>
+    <p>記事が見つかりませんでした。</p>
+  <% end %>
+</body>
+</html>

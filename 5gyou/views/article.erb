@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>記事表示</title>
+  <style>
+    /* CSSスタイルの定義 */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    p {
+      margin-bottom: 10px;
+    }
+
+    .article {
+      background-color: #f5f3f0;
+      border: 1px solid #87856c;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    .full-article-link {
+      display: block;
+      margin-top: 10px;
+    }
+    .gohome {
+      text-align:right;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>記事表示</h1>
+  <a href="/" class="gohome">ホーム</a>
+  <% @articles.each do |article| %>
+    <div class="article">
+      <p>題名: <%= article[:password] %></p>
+      <p>説明内容: <%= article[:message] %></p>
+      <a href="/full_article/<%= article[:password] %>" class="full-article-link">表示</a>
+    </div>
+  <% end %>
+</body>
+</html>

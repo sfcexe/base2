@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>記事投稿</title>
+  <style>
+    /* ボディ全体のスタイル */
+    body {
+      color: #333;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    /* 見出しのスタイル */
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    /* リンクのスタイル */
+    .gohome {
+      text-align: right;
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    /* フォームのスタイル */
+    form {
+      margin-bottom: 20px;
+    }
+
+    /* 入力フィールドのスタイル */
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: none;
+    }
+
+    /* 投稿ボタンのスタイル */
+    input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>記事投稿</h1>
+  <a href="/" class="gohome">ホーム</a>
+  <form action="/article" method="post">
+    <input type="text" name="password" placeholder="題名を入力してください" required />
+    <br>
+    <textarea name="message" rows="5" cols="50" placeholder="説明を入力してください" required></textarea>
+    <br>
+    <input type="submit" value="投稿する">
+  </form>
+</body>
+</html>
